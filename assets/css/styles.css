@@ -301,6 +301,17 @@ header {
   max-height: none !important;
 }
 
+/* Ocultar botones y controles inyectados dentro del AR */
+#ar-container button,
+#ar-container .a-enter-vr-button,
+#ar-container .a-screen-capture,
+#ar-container .mindar-ui,
+#ar-container .ar-ui,
+#ar-container .camera-icon {
+  display: none !important;
+  visibility: hidden !important;
+}
+
 /* Overlay Borde AR */
 .ar-overlay {
   position: fixed;

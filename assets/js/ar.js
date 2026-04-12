@@ -10,7 +10,7 @@ window.createARScene = function() {
   arContainer.classList.add('active');
 
   arContainer.innerHTML = `
-        <a-scene mindar-image="imageTargetSrc: assets/targets/targets.mind; autoStart: true; uiLoading: yes; uiScanning: no;" 
+        <a-scene mindar-image="imageTargetSrc: assets/targets/targets.mind; autoStart: true; uiLoading: no; uiScanning: no;" 
                  color-space="sRGB" 
                  renderer="colorManagement: true; preserveDrawingBuffer: true; alpha: true;" vr-mode-ui="enabled: false"
                  device-orientation-permission-ui="enabled: false">
@@ -162,6 +162,26 @@ window.createARScene = function() {
 
         </a-scene>
   `;
+
+  // Ocultar UI extra que pueda inyectar MindAR o A-Frame
+  const hideArUI = () => {
+    const selectors = [
+      '#ar-container button',
+      '#ar-container .a-enter-vr-button',
+      '#ar-container .a-screen-capture',
+      '#ar-container .mindar-ui',
+      '#ar-container .ar-ui',
+      '#ar-container .camera-icon'
+    ].join(', ');
+    arContainer.querySelectorAll(selectors).forEach(el => {
+      el.style.display = 'none';
+      el.style.visibility = 'hidden';
+    });
+  };
+  hideArUI();
+  const observer = new MutationObserver(hideArUI);
+  observer.observe(arContainer, { childList: true, subtree: true });
+  setTimeout(() => observer.disconnect(), 5000);
 
   // Manejo de errores
   const scene = arContainer.querySelector('a-scene');
