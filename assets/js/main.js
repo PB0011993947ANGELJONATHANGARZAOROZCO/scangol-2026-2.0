@@ -1,5 +1,15 @@
 // UI Principal
 document.addEventListener('DOMContentLoaded', () => {
+  // Desactivar funciones de foto
+  window.takeSnapshot = function() { return; };
+  window.closePhotoPreview = function() { return; };
+  window.applyPhotoFilter = function() { return; };
+  window.sharePhoto = function() { return; };
+
+  // Ocultar photoPreviewBox si existe
+  const photoBox = document.getElementById('photoPreviewBox');
+  if (photoBox) photoBox.remove();
+
   window.currentCountry = null;
   window.activeTargetEntity = null;
 
