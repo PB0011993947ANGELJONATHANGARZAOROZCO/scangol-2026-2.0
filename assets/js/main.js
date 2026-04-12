@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.hideAll = function() {
-    ['statsBox', 'videoBox', 'triviaBox', 'infoBox', 'photoPreviewBox'].forEach(id => {
+    ['statsBox', 'videoBox', 'triviaBox', 'infoBox'].forEach(id => {
       const el = document.getElementById(id); if (el) el.style.display = 'none';
     });
     const player = document.getElementById('videoPlayer'); if (player) { player.pause(); player.currentTime = 0; }
@@ -58,70 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   if (btn4) btn4.addEventListener('click', () => { if (window.activeTargetEntity) window.animaModel(window.activeTargetEntity); });
-
-  // Captura de foto
-  window.takeSnapshot = function() {
-    const sceneEl = document.querySelector('a-scene');
-    const videoEl = document.querySelector('video'); // Video de MindAR
-    
-    if (!sceneEl || !videoEl) return;
-
-    const width = sceneEl.renderer.domElement.width;
-    const height = sceneEl.renderer.domElement.height;
-
-    const captureCanvas = document.createElement('canvas');
-    captureCanvas.width = width;
-    captureCanvas.height = height;
-    const ctx = captureCanvas.getContext('2d');
-
-    // 1. Dibujar video (ajustando cover)
-    const videoRatio = videoEl.videoWidth / videoEl.videoHeight;
-    const canvasRatio = width / height;
-    let sx, sy, sWidth, sHeight;
-
-    if (canvasRatio > videoRatio) {
-        sWidth = videoEl.videoWidth;
-        sHeight = videoEl.videoWidth / canvasRatio;
-        sx = 0;
-        sy = (videoEl.videoHeight - sHeight) / 2;
-    } else {
-        sHeight = videoEl.videoHeight;
-        sWidth = videoEl.videoHeight * canvasRatio;
-        sy = 0;
-        sx = (videoEl.videoWidth - sWidth) / 2;
-    }
-    
-    // Dibujar video recortado
-    ctx.drawImage(videoEl, sx, sy, sWidth, sHeight, 0, 0, width, height);
-    
-    // 2. Dibujar escena 3D
-    ctx.drawImage(sceneEl.renderer.domElement, 0, 0);
-
-    // Mostrar
-    const dataURL = captureCanvas.toDataURL('image/png');
-    const img = document.getElementById('capturedImage');
-    if (img) {
-        img.src = dataURL;
-        img.style.filter = 'none';
-    }
-    
-    const photoBox = document.getElementById('photoPreviewBox');
-    if (photoBox) photoBox.style.display = 'block';
-  };
-
-  window.closePhotoPreview = function() {
-    const photoBox = document.getElementById('photoPreviewBox');
-    if (photoBox) photoBox.style.display = 'none';
-  };
-
-  window.applyPhotoFilter = function(filter) {
-    const img = document.getElementById('capturedImage');
-    if (img) img.style.filter = filter;
-  };
-
-  window.sharePhoto = function() {
-    alert('¡Foto compartida en Facebook exitosamente! (Simulación)');
-  };
 
   if (startBtn) startBtn.addEventListener('click', () => {
     // Modo AR
