@@ -219,6 +219,10 @@ window.initARLogic = function() {
         modelWrapper.setAttribute('rotation','0 0 0');
       }
 
+      // Limpiar confeti si está activo al perder el escaneo
+      const confettiEl = event.target.querySelector('.confetti-container');
+      if (confettiEl) confettiEl.parentNode.removeChild(confettiEl);
+
       // Si está bloqueado, mantener interfaz
       if (window.isARLocked) return;
 
@@ -228,6 +232,22 @@ window.initARLogic = function() {
       const infoBox = document.getElementById('infoBox'); if (infoBox) infoBox.style.display = 'none';
     });
   });
+};
+
+// Mostrar / Ocultar Efecto de Confeti
+window.toggleEffect = function(targetEntity) {
+  if (!targetEntity) return;
+  
+  let confettiEl = targetEntity.querySelector('.confetti-container');
+  
+  if (confettiEl) { // Si existe, lo apagamos
+    confettiEl.parentNode.removeChild(confettiEl);
+  } else { // Si no existe, lo creamos
+    confettiEl = document.createElement('a-entity');
+    confettiEl.setAttribute('class', 'confetti-container');
+    confettiEl.setAttribute('confetti', ''); // Invocamos el nuevo componente
+    targetEntity.appendChild(confettiEl);
+  }
 };
 
 window.animaModel = function(targetEntity) {

@@ -11,8 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (backBtn) backBtn.addEventListener('click', () => { window.location.href = 'index.html'; });
 
+  // Crear botón de Efecto dinámicamente
+  const btnEffect = document.createElement('button');
+  btnEffect.id = 'btnEffect';
+  btnEffect.className = 'action-btn';
+  btnEffect.innerHTML = '<i class="fas fa-magic"></i> Efecto';
+  btnEffect.style.display = 'inline-block';
+  btnEffect.addEventListener('click', () => { if (window.activeTargetEntity && window.toggleEffect) window.toggleEffect(window.activeTargetEntity); });
+  
+  const buttonsPanel = document.getElementById('buttons-panel');
+  if (buttonsPanel) buttonsPanel.appendChild(btnEffect);
+
   window.resetButtons = function() {
-    const mainButtons = [btn4];
+    const mainButtons = [btn4, btnEffect];
     mainButtons.forEach(btn => { if (btn) btn.style.display = 'inline-block'; });
   };
 
