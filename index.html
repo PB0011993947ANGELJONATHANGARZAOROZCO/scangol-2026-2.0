@@ -31,7 +31,12 @@
 <!-- Intro -->
 <div id="intro" class="container intro-container">
 
-  <div class="hero-card">
+  <div class="hero-card" style="position: relative;">
+    <!-- Botón de Guía reubicado -->
+    <div onclick="showGuideVideo()" style="position: absolute; top: 15px; right: 15px; z-index: 10; background: rgba(0,0,0,0.6); padding: 8px 12px; border-radius: 20px; cursor: pointer; border: 1px solid rgba(155, 89, 182, 0.5); box-shadow: 0 4px 10px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 5px; color: white; font-size: 0.85rem; backdrop-filter: blur(5px);" title="Ver Video Tutorial">
+      <i class="fas fa-play-circle" style="color: #9b59b6; font-size: 1.1rem;"></i>
+      <span>Guía</span>
+    </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <span class="badge">Experiencia AR</span>
@@ -115,6 +120,18 @@
     <p id="triviaQuestion"></p>
     <div id="triviaOptions"></div>
     <p id="triviaResult"></p>
+  </div>
+</div>
+
+<!-- GUÍA DE USO (Video limpio sin filtros ni flechas) -->
+<div id="guideVideoBox" class="info-box video-box" style="display:none;">
+  <button class="close-btn" onclick="closeGuideVideo()" title="Cerrar">
+    <i class="fas fa-times"></i>
+  </button>
+  <div style="width:100%; display:flex; flex-direction: column; align-items:center; justify-content:center; padding-top: 20px;">
+    <h3 style="margin-bottom: 15px; color: #fff;">Guía de Uso</h3>
+    <!-- El atributo 'controls' le da los botones de play/pausa nativos -->
+    <video id="guideVideoPlayer" playsinline controls style="width:100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);"></video>
   </div>
 </div>
 

@@ -28,19 +28,40 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.hideAll = function() {
-    ['statsBox', 'videoBox', 'triviaBox', 'infoBox', 'photoPreviewBox'].forEach(id => {
+    ['statsBox', 'videoBox', 'triviaBox', 'infoBox', 'photoPreviewBox', 'guideVideoBox'].forEach(id => {
       const el = document.getElementById(id); if (el) el.style.display = 'none';
     });
     const player = document.getElementById('videoPlayer'); if (player) { player.pause(); player.currentTime = 0; }
+    const guidePlayer = document.getElementById('guideVideoPlayer'); if (guidePlayer) { guidePlayer.pause(); guidePlayer.currentTime = 0; }
   };
 
   window.closeTriviaOrVideo = function() {
     const triviaBox = document.getElementById('triviaBox'); if (triviaBox) triviaBox.style.display = 'none';
     const videoBox = document.getElementById('videoBox'); if (videoBox) videoBox.style.display = 'none';
+    const guideVideoBox = document.getElementById('guideVideoBox'); if (guideVideoBox) guideVideoBox.style.display = 'none';
   };
 
   window.closeStats = function() {
     const statsBox = document.getElementById('statsBox'); if (statsBox) statsBox.style.display = 'none';
+  };
+
+  // Mostrar Video Guía de Uso (Tutorial)
+  window.showGuideVideo = function() {
+    if (window.hideAll) window.hideAll();
+    const guideVideoBox = document.getElementById('guideVideoBox');
+    const guideVideoPlayer = document.getElementById('guideVideoPlayer');
+    if (guideVideoBox && guideVideoPlayer) {
+      guideVideoBox.style.display = 'block';
+      guideVideoPlayer.src = 'assets/videos/brasil.mp4'; // VIDEO TEMPORAL - Cámbialo por tu ruta del tutorial luego
+      guideVideoPlayer.play().catch(e => console.log("Autoplay bloqueado: ", e));
+    }
+  };
+
+  window.closeGuideVideo = function() {
+    const guideVideoBox = document.getElementById('guideVideoBox');
+    const guideVideoPlayer = document.getElementById('guideVideoPlayer');
+    if (guideVideoBox) guideVideoBox.style.display = 'none';
+    if (guideVideoPlayer) { guideVideoPlayer.pause(); guideVideoPlayer.currentTime = 0; }
   };
 
   window.unlockAR = function() {
