@@ -1,9 +1,15 @@
 // Lista de videos del reproductor
 const videoPlaylist = [
-  "assets/videos/colombia-japan.mp4",
-  "assets/videos/england-iran.mp4",
-  "assets/videos/jordan-qatara.mp4",
-  "assets/videos/morocco-koreas.mp4"
+  "assets/videos/alemania.mp4",
+  "assets/videos/argentina.mp4",
+  "assets/videos/australia.mp4",
+  "assets/videos/brasil.mp4",
+  "assets/videos/canada.mp4",
+  "assets/videos/colombia.mp4",
+  "assets/videos/ecuador.mp4",
+  "assets/videos/espana.mp4",
+  "assets/videos/francia.mp4",
+  "assets/videos/mexico.mp4"
 ];
 
 let currentVideoIndex = 0;
