@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const guideVideoPlayer = document.getElementById('guideVideoPlayer');
     if (guideVideoBox && guideVideoPlayer) {
       guideVideoBox.style.display = 'block';
-      guideVideoPlayer.src = 'assets/videos/brasil.mp4'; // VIDEO TEMPORAL - Cámbialo por tu ruta del tutorial luego
+      guideVideoPlayer.src = 'assets/videos/tutorial.mp4'; 
       guideVideoPlayer.play().catch(e => console.log("Autoplay bloqueado: ", e));
     }
   };
